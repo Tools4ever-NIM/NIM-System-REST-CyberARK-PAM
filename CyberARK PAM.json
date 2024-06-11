@@ -74,8 +74,6 @@
                     "password": "{password}",
                     "concurrentSession": true
             },
-            "directToken": true,
-            "tokenPath": null,
             "headerName": "Authorization",
             "headerTemplate": "{token}"
         }
