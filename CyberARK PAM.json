@@ -1,0 +1,99 @@
+{
+    "schema": {
+        "options": {},
+        "crud_objects": {
+            "Accounts": {
+                "operations": {
+                    "AccountsList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/PasswordVault/API/Accounts"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        }
+                    }
+                },
+                "parameters": {},
+                "key": "id",
+                "resources": {
+                    "id": "string*",
+                    "name": "string*",
+                    "address": "string*",
+                    "userName": "string*",
+                    "platformId": "string*",
+                    "safeName": "string*",
+                    "secretType": "string*",
+                    "platformAccountProperties": "string*",
+                    "secretManagement": {
+                        "automaticManagementEnabled": "_:boolean*",
+                        "manualManagementReason": "_:string*",
+                        "status": "_:string*",
+                        "lastModifiedTime": "_:string*",
+                        "lastReconciledTime": "_:string*",
+                        "lastVerifiedTime": "_:string*"
+                    },
+                    "remoteMachinesAccess": {
+                        "remoteMachines": "_:string*",
+                        "accessRestrictedToRemoteMachines": "_:boolean*"
+                    },
+                    "createdTime": "string*",
+                    "categoryModificationTime": "string*"
+                }
+            }
+        }
+    },
+    "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}",
+            "get": {
+                "query_parameters": {
+                },
+                "pagination": {
+                    "mode": "skip_take",
+                    "path": [],
+                    "page_size": "{page_size}",
+                    "params": {
+                      "limit": "{take_count}",
+                      "offset": "{skip_count}"
+                    }
+                  }
+            },
+            "authentication": "custom_post_token",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/PasswordVault/WebServices/PIMServices.svc/Verify/"
+            }
+        },
+        "authOptions": {
+            "authUrl": "https://{tenant_id}/PasswordVault/API/auth/Cyberark/Logon",
+            "postData": {
+                    "username": "{user_name}",
+                    "password": "{password}",
+                    "concurrentSession": true
+            },
+            "directToken": true,
+            "tokenPath": null,
+            "headerName": "Authorization",
+            "headerTemplate": "{token}"
+        }
+    },
+    "connection": {
+        "items": [
+            {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenent URL:",
+                "value": ""
+            },
+            {
+                "name": "page_size",
+                "type": "textbox",
+                "label": "Page Size:",
+                "value": "100"
+            }
+        ]
+    }
+}
