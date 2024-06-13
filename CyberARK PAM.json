@@ -10,7 +10,7 @@
                             "path": "/PasswordVault/API/Accounts"
                         },
                         "processing_options": {
-                            "output_field": null
+                            "output_field": "value"
                         },
                         "query_parameters": {
                         }
@@ -64,7 +64,7 @@
             "authentication": "custom_post_token",
             "call_handling": "generic",
             "test_connection": {
-                "url": "/PasswordVault/WebServices/PIMServices.svc/Verify/"
+                "url": "/PasswordVault/API/Accounts?offset=0limit=1"
             }
         },
         "authOptions": {
