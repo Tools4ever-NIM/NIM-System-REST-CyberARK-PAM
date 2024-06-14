@@ -42,6 +42,171 @@
                     "createdTime": "string*",
                     "categoryModificationTime": "string*"
                 }
+            },
+            "Safes": {
+                "operations": {
+                    "SafesList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/PasswordVault/API/Safes"
+                        },
+                        "processing_options": {
+                            "output_field": "value"
+                        },
+                        "query_parameters": {
+                            "includeAccounts": true,
+                            "extendedDetails": true
+                        }
+                    },
+                    "SafeCreate": {
+                        "method": "post",
+                        "call": {
+                            "mode": "normal",
+                            "path": "/PasswordVault/API/Safes"
+                        },
+                        "query_parameters": {},
+                        "semantics": "create",
+                        "resource_allowance_default": "optional",
+                        "resource_prohibited": [
+                            "id",
+                            "safeUrlId",
+                            "safeNumber",
+                            "creator_id",
+                            "creator_name",
+                            "creationTime",
+                            "lastModificationTime",
+                            "isExpiredMember"
+                        ],
+                        "resource_mandatory": [
+                            "safeName"
+                        ]
+                    },
+                    "SafeDelete": {
+                        "method": "delete",
+                        "call": {
+                            "mode": "normal",
+                            "path": "/PasswordVault/API/Safes/{safeUrlId}/"
+                        },
+                        "query_parameters": {},
+                        "semantics": "delete",
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "safeUrlId",
+                            "id"
+                        ]
+                    }
+                },
+                "parameters": {},
+                "key": "id",
+                "resources": {
+                    "safeUrlId": "string*",
+                    "safeName": "string*",
+                    "safeNumber": "string*",
+                    "description": "string*",
+                    "location": "string*",
+                    "creator": {
+                        "id": "_:string*",
+                        "name": "_:string*"
+                    },
+                    "olacEnabled": "boolean*",
+                    "managingCPM": "string*",
+                    "numberOfVersionsRetention": "string*",
+                    "numberOfDaysRetention": "string*",
+                    "autoPurgeEnabled": "boolean*",
+                    "creationTime": "string*",
+                    "lastModificationTime": "string*",
+                    "isExpiredMember": "boolean*"
+                }
+            },
+            "SafeMembers": {
+                "operations": {
+                    "SafesList": {
+                        "method": "get",
+                        "call": {
+                            "mode": "iteration",
+                            "table": "Safes",
+                            "iterator": "safeUrlId",
+                            "path": "/PasswordVault/API/Safes/{iterator}/Members/"
+                        },
+                        "processing_options": {
+                            "output_field": "value"
+                        },
+                        "query_parameters": {
+                        }
+                    },
+                    "SafeMemberAdd": {
+                        "method": "post",
+                        "call": {
+                            "mode": "normal",
+                            "path": "/PasswordVault/API/Safes/{safeUrlId}/Members/"
+                        },
+                        "query_parameters": {},
+                        "semantics": "create",
+                        "resource_allowance_default": "optional",
+                        "resource_prohibited": [
+                            "safeName",
+                            "safeNumber",
+                            "memberId",
+                            "isPredefinedUser",
+                            "isExpiredMember"
+                        ],
+                        "resource_mandatory": [
+                            "safeUrlId",
+                            "memberName"
+                        ]
+                    },
+                    "SafeDelete": {
+                        "method": "delete",
+                        "call": {
+                            "mode": "normal",
+                            "path": "/PasswordVault/API/Safes/{safeUrlId}/Members/{memberName}/"
+                        },
+                        "query_parameters": {},
+                        "semantics": "delete",
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "safeUrlId",
+                            "memberName"
+                        ]
+                    }
+                },
+                "parameters": {},
+                "resources": {
+                    "safeUrlId": "string*",
+                    "safeName": "string*",
+                    "safeNumber": "string*",
+                    "memberId": "string*",
+                    "memberName": "string*",
+                    "memberType": "string*",
+                    "membershipExpirationDate": "string*",
+                    "isExpiredMembershipEnable": "boolean*",
+                    "isPredefinedUser": "boolean*",
+                    "isReadOnly": "boolean*",
+                    "permissions": {
+                        "useAccounts": "_:boolean*",
+                        "retrieveAccounts": "_:boolean*",
+                        "listAccounts": "_:boolean*",
+                        "addAccounts": "_:boolean*",
+                        "updateAccountContent": "_:boolean*",
+                        "updateAccountProperties": "_:boolean*",
+                        "initiateCPMAccountManagementOperations": "_:boolean*",
+                        "specifyNextAccountContent": "_:boolean*",
+                        "renameAccounts": "_:boolean*",
+                        "deleteAccounts": "_:boolean*",
+                        "unlockAccounts": "_:boolean*",
+                        "manageSafe": "_:boolean*",
+                        "manageSafeMembers": "_:boolean*",
+                        "backupSafe": "_:boolean*",
+                        "viewAuditLog": "_:boolean*",
+                        "viewSafeMembers": "_:boolean*",
+                        "accessWithoutConfirmation": "_:boolean*",
+                        "createFolders": "_:boolean*",
+                        "deleteFolders": "_:boolean*",
+                        "moveAccountsAndFolders": "_:boolean*",
+                        "requestsAuthorizationLevel1": "_:boolean*",
+                        "requestsAuthorizationLevel2": "_:boolean*"
+                    }
+                }   
             }
         }
     },
@@ -56,15 +221,15 @@
                     "path": [],
                     "page_size": "{page_size}",
                     "params": {
-                      "limit": "{take_count}",
-                      "offset": "{skip_count}"
+                      "$limit": "{take_count}",
+                      "$offset": "{skip_count}"
                     }
                   }
             },
             "authentication": "custom_post_token",
             "call_handling": "generic",
             "test_connection": {
-                "url": "/PasswordVault/API/Accounts?offset=0limit=1"
+                "url": "/PasswordVault/API/Accounts?$offset=0$limit=1"
             }
         },
         "authOptions": {
