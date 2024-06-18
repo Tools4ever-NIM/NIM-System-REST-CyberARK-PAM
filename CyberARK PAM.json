@@ -54,8 +54,6 @@
                             "output_field": "value"
                         },
                         "query_parameters": {
-                            "includeAccounts": true,
-                            "extendedDetails": true
                         }
                     },
                     "SafeCreate": {
