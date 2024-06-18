@@ -131,7 +131,7 @@
                         },
                         "query_parameters": {
                         },
-                        warning_only: [403]
+                        "warning_only": [403]
                     },
                     "SafeMemberAdd": {
                         "method": "post",
