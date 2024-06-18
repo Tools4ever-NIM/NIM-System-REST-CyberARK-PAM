@@ -130,7 +130,8 @@
                             "output_field": "value"
                         },
                         "query_parameters": {
-                        }
+                        },
+                        warning_only: [403]
                     },
                     "SafeMemberAdd": {
                         "method": "post",
