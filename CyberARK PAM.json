@@ -221,15 +221,15 @@
                     "path": [],
                     "page_size": "{page_size}",
                     "params": {
-                      "$limit": "{take_count}",
-                      "$offset": "{skip_count}"
+                      "limit": "{take_count}",
+                      "offset": "{skip_count}"
                     }
                   }
             },
             "authentication": "custom_post_token",
             "call_handling": "generic",
             "test_connection": {
-                "url": "/PasswordVault/API/Accounts?$offset=0$limit=1"
+                "url": "/PasswordVault/API/Accounts?offset=0&limit=1"
             }
         },
         "authOptions": {
